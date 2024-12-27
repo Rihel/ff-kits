@@ -1,0 +1,24 @@
+@use 'vars' as *;
+// 定义公共滚动条样式类
+.scrollbar {
+  overflow-y: overlay !important;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $scrollbar-color; // 滚动条颜色
+    border-radius: calc($border-radius-base * 2); // 滚动条圆角
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent; // 滚动条背景色
+  }
+
+  &:hover::-webkit-scrollbar {
+    display: block;
+    width: 8px;
+    height: 8px;
+  }
+}

@@ -1,0 +1,16 @@
+.content {
+  padding: $space;
+
+  .main {
+    background-color: #fff;
+    padding: $space;
+    overflow: hidden auto;
+    height: 100%;
+  }
+}
+.header {
+  :global(.ant-page-header-back-button),
+  :global(.ant-page-header-heading-title) {
+    color: #fff;
+  }
+}

@@ -1,0 +1,16 @@
+.wrap {
+  @apply leading-none;
+  .header {
+    @apply flex justify-between items-center;
+
+    .title {
+      @apply flex gap-2 items-center text-lg text-heading;
+    }
+    .extra {
+      @apply flex gap-8;
+    }
+  }
+  .bottom {
+    @apply mt-6;
+  }
+}

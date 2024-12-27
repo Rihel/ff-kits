@@ -1,0 +1,40 @@
+{
+  "common": {
+    "warning": "Warning"
+  },
+  "baseFloat": {
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "dataTable": {
+    "action": "Operations",
+    "remove": "Remove",
+    "search": "Search",
+    "reset": "Reset",
+    "total": "Total {{total}} items",
+    "selectedDataTitle": "Selected items",
+    "selectedData": "{{count}} items of data have been selected",
+    "viewSelected": "View selected data",
+    "empty": "Empty selected"
+  },
+  "loading": {
+    "tips": "Loading..."
+  },
+  "errorHandler": {
+    "back": "Back",
+    "notFound": "Oops, Content not found",
+    "error": "Oops, Error"
+  },
+  "input": {
+    "getVerifyCode": "Get Code",
+    "rest": "{{seconds}}s"
+  },
+  "listSider": {
+    "add": "Add to"
+  },
+  "upload": {
+    "reUpload": "Reupload",
+    "uploadFile": "Upload files",
+    "changeAvatar": "Change avatar"
+  }
+}

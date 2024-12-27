@@ -1,0 +1,10 @@
+node_modules
+dist
+temp
+tmp
+logs
+.env.local
+.env
+infra/minio/.minio
+infra/minio/data
+.DS_Store

@@ -1,0 +1,32 @@
+@use 'index' as *;
+
+$colorMap: (
+  default: $text-color,
+  primary: $primary-color,
+  danger: $error-color,
+  info: $link-color,
+  'white': #fff,
+);
+.wrap {
+  display: inline-block;
+  cursor: pointer;
+  @each $key, $color in $colorMap {
+    &.#{$key} {
+      color: $color;
+      &.is-disabled {
+        color: $disabled-color;
+        cursor: not-allowed;
+      }
+      &:not(.is-disabled):hover {
+        color: lighten($color: $color, $amount: 10%);
+      }
+      &:not(.is-disabled):active {
+        color: darken($color: $color, $amount: 10%);
+      }
+    }
+  }
+
+  .loading {
+    margin-right: 5px;
+  }
+}

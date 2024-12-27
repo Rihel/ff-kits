@@ -1,0 +1,42 @@
+@use 'index' as *;
+.wrap {
+  @apply bg-white;
+  + .wrap {
+    // @apply mt-4;
+  }
+  &.bordered {
+    @apply border border-light rounded-md shadow-sm;
+    .header {
+      @apply border-b border-light py-2 px-4;
+    }
+    .content {
+      @apply p-4;
+    }
+  }
+  .header {
+    @apply flex justify-between items-center mb-2;
+    .title {
+      @apply text-md text-heading;
+      position: relative;
+
+      font-weight: 500;
+      &.mark {
+        padding-left: 12px;
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          display: block;
+          width: 4px;
+          height: 16px;
+          background: #1677ff;
+          border-radius: 2px 2px 2px 2px;
+        }
+      }
+    }
+  }
+  .content {
+  }
+}

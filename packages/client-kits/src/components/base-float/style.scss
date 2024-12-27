@@ -1,0 +1,57 @@
+@use 'index' as *;
+$prefix: st-base-float;
+
+$dialog-header-height: 55px;
+$dialog-footer-height: 53px;
+
+$drawer-footer-height: 54px;
+.#{$prefix} {
+  &-dialog {
+    .ant-modal-content {
+      padding: 0;
+      .ant-modal-close-x {
+        font-size: 20px;
+      }
+      .ant-modal-header {
+        padding: 20px 24px;
+        margin-bottom: 0;
+        border-bottom: $border;
+      }
+      .ant-modal-body {
+        padding: 24px;
+      }
+      .ant-modal-footer {
+        padding: 24px;
+        margin-top: 0;
+      }
+    }
+    &-content {
+      &.hasSpace {
+        padding: $space;
+      }
+
+      overflow: hidden auto;
+      position: relative;
+    }
+  }
+  &-drawer {
+    .ant-drawer-body {
+      padding: 0;
+      overflow: hidden;
+    }
+    &-content {
+      height: calc(100% - $drawer-footer-height);
+      // background-color: red;
+      padding: $space;
+      overflow: hidden auto;
+    }
+    &-footer {
+      display: flex;
+      height: $drawer-footer-height;
+      border-top: $border;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 20px;
+    }
+  }
+}

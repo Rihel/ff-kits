@@ -1,0 +1,8 @@
+.table {
+  :global(.ant-table-thead .ant-table-cell) {
+    // @apply bg-white text-light text-sm leading-5 font-normal;
+    &::before {
+      display: none;
+    }
+  }
+}

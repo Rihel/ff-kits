@@ -1,0 +1,22 @@
+@use 'index' as *;
+
+.wrap {
+  display: flex;
+  position: relative;
+  padding: 0 $space;
+  justify-content: space-between;
+  height: $header-height;
+  align-items: center;
+  &.dark {
+    background-color: $layout-bg;
+  }
+  &.light {
+    background-color: #fff;
+    border-bottom: $border;
+  }
+  &.middle {
+    height: 100%;
+    position: absolute;
+    @include full-center;
+  }
+}

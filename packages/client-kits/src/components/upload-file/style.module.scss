@@ -1,0 +1,13 @@
+.wrap {
+  :global(.ant-upload-drag) {
+    // background: none;
+    // border: none;
+    // border-radius: 8px;
+    border: 1px dashed #e5e6eb;
+  }
+  :global(.ant-upload-drag .ant-upload-btn) {
+    background: #f7f8fa;
+    padding: 40px 24px;
+    border-radius: 8px;
+  }
+}

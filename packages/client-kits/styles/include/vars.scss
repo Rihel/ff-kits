@@ -1,0 +1,29 @@
+$primary-color: #1677ff; // 全局主色
+$link-color: #1677ff; // 链接色
+$success-color: #00b42a; // 成功色
+$warning-color: #ff7d00; // 警告色
+$error-color: #f53f3f; // 错误色
+$font-size-base: 14px; // 主字号
+
+$heading-color: #1d293b; // 标题色
+$text-color: #334155; // 主文本色
+$text-color-secondary: #6c778c; // 次文本色
+$text-color-light: #909aa6;
+
+$disabled-color: rgba(0, 0, 0, 0.25); // 失效色
+$scrollbar-color: #c1c1c1; // 滚动条颜色
+$border-radius-base: 2px; // 组件/浮层圆角
+$border-color-base: #d9d9d9; // 边框色
+$box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15); // 浮层阴影
+$border-color-light: #f0f0f0;
+$border: 1px solid $border-color-light;
+$space: 20px;
+$layout-bg: #001529;
+$bg-color: #f1f4f5;
+$grey-blue: #9aa6bf;
+// 布局
+$header-height: 60px;
+
+// 设计搞尺寸
+$design-width: 1920;
+$design-height: 1080;

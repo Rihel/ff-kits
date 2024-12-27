@@ -1,0 +1,41 @@
+@use 'index' as *;
+
+.wrap {
+  border: $border;
+  overflow: hidden;
+  border-radius: 8px;
+  // height: 100%;
+
+  // height: 100%;
+  &.full {
+    height: 100%;
+  }
+  &.space {
+    .content {
+      padding: 8px 16px;
+    }
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // cursor: pointer;
+    padding: 8px 16px;
+    overflow: hidden;
+    background-color: #edeff4;
+
+    .title {
+      font-weight: bold;
+    }
+    .icon {
+      cursor: pointer;
+      height: 100%;
+    }
+  }
+  .content {
+    border-top: $border;
+
+    overflow: hidden auto;
+    height: calc(100% - 40px);
+  }
+}

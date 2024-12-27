@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "sourceMap": false,
+    "strict": false,
+    "lib": [
+      "esnext",
+      "DOM"
+    ],
+    "target": "ES5",
+    "moduleResolution": "Bundler",
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "declaration": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false,
+    "allowSyntheticDefaultImports": true,
+    /* Linting */
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": false,
+  },
+}
