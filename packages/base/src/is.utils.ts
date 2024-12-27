@@ -21,7 +21,7 @@ export type CheckItem = RegExp | string
  */
 export function checkIs<T extends CheckItem>(
   checkList: T[] = [],
-  str: string = '',
+  str: string = ''
 ): boolean {
   return checkList.some((item) => {
     if (typeof item === 'string') {

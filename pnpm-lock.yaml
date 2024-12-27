@@ -111,6 +111,9 @@ importers:
       change-case:
         specifier: ^4.1.2
         version: 4.1.2
+      crypto-js:
+        specifier: ^4.2.0
+        version: 4.2.0
       dayjs:
         specifier: ^1.11.7
         version: 1.11.13
@@ -136,6 +139,9 @@ importers:
       '@types/axios':
         specifier: ^0.14.0
         version: 0.14.4
+      '@types/crypto-js':
+        specifier: ^4.2.2
+        version: 4.2.2
       '@types/js-cookie':
         specifier: ^3.0.6
         version: 3.0.6
@@ -1343,6 +1349,9 @@ packages:
     resolution: {integrity: sha512-9JgOaunvQdsQ/qW2OPmE5+hCeUB52lQSolecrFrthct55QekhmXEwT203s20RL+UHtCQc15y3VXpby9E7Kkh/g==}
     deprecated: This is a stub types definition. axios provides its own type definitions, so you do not need this installed.
 
+  '@types/crypto-js@4.2.2':
+    resolution: {integrity: sha512-sDOLlVbHhXpAUAL0YHDUUwDZf3iN4Bwi4W6a0W0b+QcAezUbRtH4FVb+9J4h+XFPW7l/gQ9F8qC7P+Ec4k8QVQ==}
+
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
 
@@ -1627,6 +1636,9 @@ packages:
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
+
+  crypto-js@4.2.0:
+    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
 
   css-declaration-sorter@6.4.1:
     resolution: {integrity: sha512-rtdthzxKuyq6IzqX6jEcIzQF/YqccluefyCYheovBOLhFT/drQA9zj/UbRAa9J7C0o6EG6u3E6g+vKkay7/k3g==}
@@ -4694,6 +4706,8 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
+  '@types/crypto-js@4.2.2': {}
+
   '@types/estree@1.0.6': {}
 
   '@types/glob@7.2.0':
@@ -5048,6 +5062,8 @@ snapshots:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+
+  crypto-js@4.2.0: {}
 
   css-declaration-sorter@6.4.1(postcss@8.4.49):
     dependencies:

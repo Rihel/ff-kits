@@ -10,7 +10,7 @@ export function copy(text: string) {
 const cache = new Map<string, string>()
 export function generateLetterAvatar(
   name: string,
-  bgColor: string = '#1677ff',
+  bgColor: string = '#1677ff'
 ) {
   const letter = name.slice(0, 1)?.toLocaleUpperCase() || 'U'
   if (cache.has(letter)) {

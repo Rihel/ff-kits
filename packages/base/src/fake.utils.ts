@@ -7,7 +7,7 @@ export type CreateFakeArrayOptions = Partial<{
 }>
 export const createFakeArray = (
   creator: (id: string, index: number) => Record<string, any>,
-  options?: CreateFakeArrayOptions,
+  options?: CreateFakeArrayOptions
 ) => {
   let idSeed = 0
   let min = options?.range?.[0] || 10

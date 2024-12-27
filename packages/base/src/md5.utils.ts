@@ -1,8 +1,8 @@
-import md5 from 'js-md5'
+import crypto from 'crypto-js'
 export function createJsonMd5(json = {}) {
   try {
     const content = JSON.stringify(json)
-    return md5(content)
+    return createMd5(content)
   } catch (error) {
     console.warn(error)
   }
@@ -10,5 +10,5 @@ export function createJsonMd5(json = {}) {
 }
 
 export function createMd5(content = '') {
-  return md5(content)
+  return crypto.MD5(content).toString(crypto.enc.Hex)
 }

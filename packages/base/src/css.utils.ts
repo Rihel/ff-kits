@@ -3,7 +3,11 @@ import { isAvailableData } from './is.utils'
 
 type Names = Record<string, string[]> | string[]
 
-export const createCssSelector = (prefix: string, names: Names, globalPrefix = 'st') => {
+export const createCssSelector = (
+  prefix: string,
+  names: Names,
+  globalPrefix = 'st'
+) => {
   const res = Object.create(null)
   const def = (key: string, value: string) => {
     if (isAvailableData(key)) {

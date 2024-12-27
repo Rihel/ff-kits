@@ -1,5 +1,3 @@
-
-
 type CacheKey = string
 type CacheManagerOptions<KeyData extends Record<PropertyKey, any>> = {
   cacheTime: number
@@ -12,18 +10,18 @@ type CacheItem = {
 
 type CacheMap = Record<CacheKey, CacheItem>
 
-
-
 export type CacheManager<KeyData extends Record<PropertyKey, any>> = {
-  hasCache(keyData: KeyData): boolean,
-  isExpire(keyData: KeyData): boolean,
-  setCache(keyData: KeyData, data: any): void,
+  hasCache(keyData: KeyData): boolean
+  isExpire(keyData: KeyData): boolean
+  setCache(keyData: KeyData, data: any): void
   getCacheData(keyData: KeyData): KeyData | null
 }
 
-export function createCacheManager<KeyData extends Record<PropertyKey, any>>({ cacheTime, genKey }: CacheManagerOptions<KeyData>): CacheManager<KeyData> {
+export function createCacheManager<KeyData extends Record<PropertyKey, any>>({
+  cacheTime,
+  genKey,
+}: CacheManagerOptions<KeyData>): CacheManager<KeyData> {
   const cache: CacheMap = {}
-
 
   function resolveKey(data: KeyData | string) {
     return typeof data === 'string' ? data : genKey(data)
@@ -33,7 +31,7 @@ export function createCacheManager<KeyData extends Record<PropertyKey, any>>({ c
     const cacheKey: CacheKey = resolveKey(keyData)
     const cacheItem: CacheItem = {
       time: Date.now(),
-      data
+      data,
     }
     cache[cacheKey] = cacheItem
   }
@@ -62,11 +60,10 @@ export function createCacheManager<KeyData extends Record<PropertyKey, any>>({ c
     return null
   }
 
-
   return {
     hasCache,
     isExpire,
     setCache,
-    getCacheData
+    getCacheData,
   }
 }

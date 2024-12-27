@@ -9,13 +9,13 @@ type RecursionTreeOptions<T extends Record<string, any>> = {
     parent: T | null,
     index: number,
     path: T[],
-    depth?: number,
+    depth?: number
   ) => void
   stop?: (item: T) => boolean
 }
 export function recursionTree<T extends Record<string, any>>(
   data: T[],
-  options: RecursionTreeOptions<T>,
+  options: RecursionTreeOptions<T>
 ) {
   const json = Array.isArray(data) ? data : [data]
   const { childrenKey, visit, stop } = Object.assign(
@@ -24,14 +24,14 @@ export function recursionTree<T extends Record<string, any>>(
       stop: () => false,
       visit: () => {},
     },
-    options,
+    options
   )
 
   const walk = (
     list: T[],
     parent: T | null,
     path: T[] = [],
-    depth: number = 0,
+    depth: number = 0
   ) => {
     for (let i = 0; i < list.length; i++) {
       const item = list[i]
@@ -73,13 +73,13 @@ export const arrayToTree = <
   CK extends PropertyKey,
 >(
   list: T[] = [],
-  options?: ArrayToTreeOptions<T, CK>,
+  options?: ArrayToTreeOptions<T, CK>
 ): TreeResult<T, CK>[] => {
   type Item = TreeResult<T, CK>
 
   const { parentKey, childrenKey, primaryKey } = _.merge(
     { parentKey: 'parentId', childrenKey: 'children', primaryKey: 'id' },
-    options,
+    options
   )
 
   const res: Record<string, Item[] | Item> = {
@@ -124,13 +124,13 @@ type TreeUtilCallback<
 > = (
   item: ITreeNode<T, CK>,
   index: number,
-  parent?: ITreeNode<T, CK> | null,
+  parent?: ITreeNode<T, CK> | null
 ) => Res
 
 export const findTree = <T extends Record<string, any>, CK extends keyof T>(
   tree: ITreeNode<T, CK>[],
   fn: TreeUtilCallback<T, CK, boolean>,
-  options?: { childrenKey: CK },
+  options?: { childrenKey: CK }
 ) => {
   const { childrenKey } = _.merge({ childrenKey: 'children' }, options)
   const res: ITreeNode<T, CK>[] = []
@@ -149,16 +149,16 @@ export const findTree = <T extends Record<string, any>, CK extends keyof T>(
 export const filterTree = <T extends Record<string, any>, CK extends keyof T>(
   tree: ITreeNode<T, CK>[],
   fn: TreeUtilCallback<T, CK, boolean>,
-  options?: { childrenKey?: CK; keepWithTrue?: boolean },
+  options?: { childrenKey?: CK; keepWithTrue?: boolean }
 ) => {
   const { childrenKey } = _.merge(
     { childrenKey: 'children', keepWithTrue: true },
-    options,
+    options
   )
 
   const walk = (
     list: ITreeNode<T, CK>[],
-    parent?: ITreeNode<T, CK>,
+    parent?: ITreeNode<T, CK>
   ): ITreeNode<T, CK>[] => {
     return list.filter((item, index) => {
       const res = fn(item, index, parent)
@@ -181,7 +181,7 @@ export const mapTree = <
 >(
   tree: ITreeNode<T, CK>[],
   fn: TreeUtilCallback<T, CK, Res>,
-  options?: { childrenKey: CK },
+  options?: { childrenKey: CK }
 ) => {
   type NewTreeNode = ITreeNode<Res, CK | keyof Res>
   const { childrenKey } = _.merge({ childrenKey: 'children' }, options)

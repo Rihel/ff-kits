@@ -21,7 +21,7 @@ export function createDict<
   DataSource extends Record<string, T>,
 >(
   dataSource: DataSource,
-  optionConfig: OptionConfig<T> = { labelKey: 'label', valueKey: 'value' },
+  optionConfig: OptionConfig<T> = { labelKey: 'label', valueKey: 'value' }
 ) {
   type Option = MakeOption<T, OptionConfig<T>>
   type Result = {
@@ -33,7 +33,7 @@ export function createDict<
     labels: Option['label'][]
     filterOptions(
       filterFn: (option: Option, index: number) => boolean,
-      language?: string,
+      language?: string
     ): Option[]
     getOption(value: Option['value']): Option
     getOptions(language?: string): Option[]
@@ -45,7 +45,7 @@ export function createDict<
     [Key in keyof DataSource]: Option['value']
   } & {
     [Key in keyof DataSource as `is${Capitalize<Key & string>}`]: (
-      data: Option['value'],
+      data: Option['value']
     ) => boolean
   }
 
@@ -85,7 +85,7 @@ export function createDict<
 
   function filterOptions(
     filterFn: (option: Option, index: number) => boolean,
-    language?: string,
+    language?: string
   ) {
     return getOptions(language).filter(filterFn)
   }
@@ -151,7 +151,7 @@ export function createOptionByArray(arr: Array<string | number> = []) {
 
 export function withAllOption<T extends Dict>(
   dict: T,
-  i18n?: Record<string, any>,
+  i18n?: Record<string, any>
 ) {
   const dataSource = {
     All: {
@@ -177,7 +177,7 @@ export type CreateDictByDataSourceOptions<T> = {
 
 export function createDictByDataSource<T extends Record<string, any>>(
   dataSource: T[],
-  options?: CreateDictByDataSourceOptions<T>,
+  options?: CreateDictByDataSourceOptions<T>
 ) {
   const { valueKey = 'id' } = options || {}
   const internalDataSource = _.cloneDeep(dataSource).map((item) => {

@@ -34,7 +34,7 @@ export function createTemplateEngine(options?: {
           }
           return acc
         },
-        [] as { name: string }[],
+        [] as { name: string }[]
       )
       return res
     }
@@ -122,7 +122,7 @@ export function resolveTemplateMetadata(options?: {
 
 export function parseTemplateVariables(
   source = '',
-  options?: { start: string; end: string },
+  options?: { start: string; end: string }
 ) {
   const { match } = resolveTemplateMetadata(options)
   const matches = source.match(new RegExp(match, 'g'))
@@ -137,7 +137,7 @@ export function parseTemplateVariables(
         }
         return acc
       },
-      [] as { name: string }[],
+      [] as { name: string }[]
     )
   }
   return []
@@ -146,7 +146,7 @@ export function parseTemplateVariables(
 export function renderTemplate(
   source: string,
   data?: Record<string, any>,
-  options?: { start: string; end: string },
+  options?: { start: string; end: string }
 ) {
   const meta = resolveTemplateMetadata(options)
   const variableDefinitions = parseTemplateVariables(source, options)

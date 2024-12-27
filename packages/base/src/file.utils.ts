@@ -1,4 +1,4 @@
-import md5 from 'js-md5'
+import crypto from 'crypto-js'
 
 export function saveAsJson(json: Record<string, any>, filename: string) {
   const str = JSON.stringify(json, null, 2)
@@ -40,23 +40,21 @@ export function saveAsXlsx(buf: ArrayBuffer, filename: string) {
   URL.revokeObjectURL(url)
 }
 
-export function getFileMd5(file: File) {
-  const fr = new FileReader()
-  return new Promise((resolve, reject) => {
-    fr.onload = (event) => {
-      const arrayBuffer = event?.target?.result as ArrayBuffer
-      const result = md5(arrayBuffer)
-      resolve(result)
-    }
-    fr.onerror = (e) => {
-      reject(e)
-    }
-    fr.readAsArrayBuffer(file)
-  })
+export async function getFileBuffer(file: File) {
+  const arrayBuffer = await file.arrayBuffer()
+  const buffer = new Uint8Array(arrayBuffer)
+  return buffer
+}
+
+export async function getFileMd5(file: File) {
+  const arrayBuffer = await getFileBuffer(file)
+  const buffer = crypto.lib.WordArray.create(arrayBuffer)
+  const result = crypto.MD5(buffer).toString(crypto.enc.Hex)
+  return result
 }
 
 export function getFileExtName(filename: string) {
-  const match = filename.match(/\.*(\..*)$/)
+  const match = filename.match(/(\..[^\.]+)$/)
   if (match) {
     return match[1]
   }
@@ -96,13 +94,13 @@ export function formatFileSize(size: number) {
   if (size < 1024) {
     return `${size} byte`
   } else if (size >= kb && size < mb) {
-    return (size / kb).toFixed(2) + 'kb'
+    return (size / kb).toFixed(2) + ' kb'
   } else if (size >= mb && size < gb) {
-    return (size / mb).toFixed(2) + 'mb'
+    return (size / mb).toFixed(2) + ' mb'
   } else if (size >= gb && size < tb) {
-    return (size / gb).toFixed(2) + 'gb'
+    return (size / gb).toFixed(2) + ' gb'
   } else if (size >= tb) {
-    return (size / tb).toFixed(2) + 'tb'
+    return (size / tb).toFixed(2) + ' tb'
   }
 }
 
@@ -127,14 +125,6 @@ export function getJsonSize(jsonObj: Record<string, any>) {
   return jsonSize
 }
 
-export function isBase64Image(value: string) {
-  return /^data:image\/\w+;base64,/.test(value)
-}
-
-export function isNetworkImage(value: string) {
-  return /^https?:\/\//.test(value)
-}
-
 export function isImageUrl(value: string) {
-  return isNetworkImage(value) || isBase64Image(value)
+  return /^(?:https?:)|^(data:image\/.*)/.test(value)
 }

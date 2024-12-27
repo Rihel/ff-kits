@@ -32,7 +32,7 @@ export function menusBuilder(menus: LikeMenu[] = []) {
 }
 export function resolveMenus(
   menus: LikeMenu[] = [],
-  data: Record<string, any> = {},
+  data: Record<string, any> = {}
 ) {
   return menusBuilder(menus)(data)
 }

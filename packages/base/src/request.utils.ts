@@ -1,4 +1,9 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
+import axios, {
+  AxiosError,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios'
 
 import _ from 'lodash'
 import { createCacheManager } from './cache.utils'
@@ -11,14 +16,11 @@ const defaultOptions = {
   beforeRequest(config: InternalAxiosRequestConfig) {
     return config
   },
-  onError(error: AxiosError) {
-
-  },
+  onError(error: AxiosError) {},
   onResponse(res: AxiosResponse): any {
     return res
   },
 }
-
 
 export type CreateRequestOptions = Partial<typeof defaultOptions>
 type RequestMethod = 'get' | 'post' | 'delete' | 'put'
@@ -30,47 +32,50 @@ type CustomRequestMethodOptions = AxiosRequestConfig & {
 
 export type RequestFunction<
   Response extends Record<string, any> = Record<string, any>,
-  Params extends Record<string, any> = Record<string, any>
-> =
-  (data?: Params, options?: CustomRequestMethodOptions) => Promise<AxiosResponse<Response>>
-
-
-
-
+  Params extends Record<string, any> = Record<string, any>,
+> = (
+  data?: Params,
+  options?: CustomRequestMethodOptions
+) => Promise<AxiosResponse<Response>>
 
 type ApiDefinition = {
-  url: string,
-  method: RequestMethod,
+  url: string
+  method: RequestMethod
   fn: RequestFunction
 }
 export type RequestInstance = {
-  callApi(name: string, params: Record<string, any>, options?: CustomRequestMethodOptions): Promise<any>;
+  callApi(
+    name: string,
+    params: Record<string, any>,
+    options?: CustomRequestMethodOptions
+  ): Promise<any>
   defineApi(name: string, url: string, method: RequestMethod): RequestFunction
 } & {
-  [M in RequestMethod]: (url: string, data: Record<string, any>, options?: CustomRequestMethodOptions) => Promise<AxiosResponse>
+  [M in RequestMethod]: (
+    url: string,
+    data: Record<string, any>,
+    options?: CustomRequestMethodOptions
+  ) => Promise<AxiosResponse>
 } & {
   // [key: string]: RequestFunction
 }
 
-
 type RequestCacheKey = {
-  url: string,
-  method: RequestMethod,
+  url: string
+  method: RequestMethod
   headers: Partial<Record<string, any>>
   params?: Record<string, any>
 }
 
-
 export function createRequest(options: CreateRequestOptions) {
-  const res: any = {
-  }
+  const res: any = {}
   const apiMap: Record<string, ApiDefinition> = {}
   options = _.merge(_.cloneDeep(defaultOptions), options)
   const cache = createCacheManager({
     cacheTime: 30 * 1000,
     genKey: (data) => {
       return createJsonMd5(data) as string
-    }
+    },
   })
   const client = axios.create({
     baseURL: options.baseURL,
@@ -98,7 +103,11 @@ export function createRequest(options: CreateRequestOptions) {
 
   // 代理请求方法
   requestMethods.forEach((methodKey) => {
-    res[methodKey] = (url: string, data: Record<string, any>, options: CustomRequestMethodOptions) => {
+    res[methodKey] = (
+      url: string,
+      data: Record<string, any>,
+      options: CustomRequestMethodOptions
+    ) => {
       let isCache = false
       let headers = {}
       if (typeof options === 'boolean') {
@@ -122,7 +131,7 @@ export function createRequest(options: CreateRequestOptions) {
         url,
         method: methodKey,
         headers,
-        params: data
+        params: data,
       }
 
       if (_.has(options, 'responseType')) {
@@ -134,7 +143,6 @@ export function createRequest(options: CreateRequestOptions) {
       if (data) {
         if (['get', 'delete'].includes(methodKey)) {
           obj.params = data
-
         } else if (['post', 'put'].includes(methodKey)) {
           obj.data = data
           if (_.has(options, 'params')) {
@@ -161,13 +169,20 @@ export function createRequest(options: CreateRequestOptions) {
     return apiMap[name]
   }
 
-  function callApi(name: string, params: Record<string, any>, options: AxiosRequestConfig) {
+  function callApi(
+    name: string,
+    params: Record<string, any>,
+    options: AxiosRequestConfig
+  ) {
     const api = resolveApi(name)
     return api?.fn?.(params, options)
   }
 
   function defineApi(name: string, url: string, method: RequestMethod) {
-    const fn: RequestFunction = (data?: Record<string, any>, options?: AxiosRequestConfig) => {
+    const fn: RequestFunction = (
+      data?: Record<string, any>,
+      options?: AxiosRequestConfig
+    ) => {
       return res[method](url, data, options)
     }
     apiMap[name] = {
@@ -183,4 +198,3 @@ export function createRequest(options: CreateRequestOptions) {
   res.callApi = callApi
   return res as RequestInstance
 }
-

@@ -32,6 +32,7 @@ const libs = [
   { varname: 'ReactRouterDom', pkg: 'react-router-dom' },
   { varname: 'ClassValidator', pkg: 'class-validator' },
   { varname: 'ClassTransformer', pkg: 'class-transformer' },
+  { varname: 'CryptoJS', pkg: 'crypto-js' },
   { varname: 'ahooks', pkg: 'ahooks' },
   { varname: 'immer', pkg: 'immer' },
   { varname: 'useImmer', pkg: 'use-immer' },

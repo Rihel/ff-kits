@@ -36,12 +36,15 @@ export function toUnix(date: ConfigType) {
   return dayjs(date).unix()
 }
 
-
 export const toTimeRange = (from: ConfigType, to: ConfigType) => {
   return [from, to].filter(Boolean).map((item) => standardTime(item))
 }
 
-export function calcDuration(start: ConfigType, end: ConfigType, unit?: QUnitType | OpUnitType) {
+export function calcDuration(
+  start: ConfigType,
+  end: ConfigType,
+  unit?: QUnitType | OpUnitType
+) {
   const startTime = standardTime(start)
   const endTime = standardTime(end)
   let res = endTime.diff(startTime, unit, true)
